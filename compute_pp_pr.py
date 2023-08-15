@@ -39,10 +39,8 @@ def get_hypersphere_f(distance, k_nearest, a):
 
 def get_scoring_rule_psr(f, kth, gpu = False):
     if not gpu:
-        f = np.sort(f, axis = 0)[-kth:]
         PSR = np.prod(1.0 - f, axis = 0)
     else:
-        f = torch.sort(f, dim = 0)[0][-kth:]
         PSR = torch.prod(1.0 - f, dim = 0)
     return PSR
 
