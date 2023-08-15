@@ -2,11 +2,12 @@
 The official implementation of **Probabilistic Precision and Recall Towards Reliable Evaluation of Generative Models** (P-precision & P-recall), accepted at ICCV-2023.
 ![figure/image2.png](figure/image2.png)
 
-## Usage
+## Usage for toy experiments
 To be updated soon.
 
 ### 1. Outlier Test
 
 ### 2. Reflecting fidelity and diversity
 
-### 3. Generative Model Benchmarks
+## Usage for evaluating generative model
+To be updated soon.
