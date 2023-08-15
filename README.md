@@ -2,7 +2,7 @@
 The official implementation of **Probabilistic Precision and Recall Towards Reliable Evaluation of Generative Models** (P-precision & P-recall), accepted at ICCV-2023.
 ![figure/image2.png](figure/image2.png)
 
-## Toy Experiments
+## Usage
 
 ### 1. Outlier Test
 Test 10K real and generated samples from standard normal distribution N(0, I)
