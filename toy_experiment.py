@@ -15,7 +15,7 @@ def random_seed(seed):
     np.random.seed(seed)
     random.seed(seed)
 
-def get_dataset(dim = 64, datanum = 20000, u = 0, v = 1):
+def get_toydataset(dim = 64, datanum = 20000, u = 0, v = 1):
     real = np.random.randn(datanum, dim)
     fake = torch.empty((datanum, dim))
     torch.nn.init.normal_(fake, u, v)
@@ -49,7 +49,7 @@ def main(args):
         outlier = -2 + np.random.randn(1, args.dim)
         for sh in np.arange(-3.0, 3.2, 0.2):
             print('Shifting Factor : ', sh)
-            real, fake = get_dataset(args.dim, args.datanum, u = sh)
+            real, fake = get_toydataset(args.dim, args.datanum, u = sh)
             real[0] = outlier
 
             # PP&PR
@@ -64,7 +64,7 @@ def main(args):
         outlier = 2 + np.random.randn(1, args.dim)
         for sh in np.arange(-3.0, 3.2, 0.2):
             print('Shifting Factor : ', sh)
-            fake, real = get_dataset(args.dim, args.datanum, u = sh)
+            fake, real = get_toydataset(args.dim, args.datanum, u = sh)
             fake[0] = outlier
 
             # PP&PR
@@ -78,7 +78,7 @@ def main(args):
     elif args.setting == 'trade_off':
         for v in np.arange(0.2, 1.6, 0.1):
             print('Variance : ', v)
-            real, fake = get_dataset(args.dim, args.datanum, v = v)
+            real, fake = get_toydataset(args.dim, args.datanum, v = v)
 
             # PP&PR
             p_precision, p_recall = pprecision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
@@ -92,7 +92,7 @@ def main(args):
         num_list = [100, 500, 750, 1000, 2500, 5000, 7500, 10000, 15000, 20000, 30000, 40000, 50000]
         for num in num_list:
             print('Number of dataset : ', num)
-            real, fake = get_dataset(args.dim, num)
+            real, fake = get_toydataset(args.dim, num)
 
             # PP&PR
             p_precision, p_recall = pprecision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
@@ -109,12 +109,9 @@ def main(args):
             print('a : ', a)
             for k in k_list:
                 print('k : ', k)
-                real, fake = get_dataset(args.dim, args.datanum)
+                real, fake = get_toydataset(args.dim, args.datanum)
                 p_precision, p_recall = pprecision_precall(real, fake, a = a, kth = k, gpu = args.gpu_enable)
-                lower_bound = 1 - (1 / a)**k
-                print('p_precision : {:.5f}, \t p_recall : {:.5f}, \t Lower Bound : {:.5f}'.format(p_precision, 
-                                                                                                p_recall, lower_bound))
-
+                print('p_precision : {:.5f}, \t p_recall : {:.5f}'.format(p_precision,p_recall))
 
 
 if __name__ == '__main__':
