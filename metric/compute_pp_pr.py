@@ -31,21 +31,15 @@ def get_average_of_knn_distance(x, kth, gpu = False):
 
     return k_nearest
 
-def get_hypersphere_f(distance, k_nearest, a):
+def get_scoring_rule_psr(distance, k_nearest, a, gpu = False):
     out_of_knearest = distance >= a * k_nearest
-    f = 1 - distance / (a * k_nearest)
-    f[out_of_knearest] = 0.0
-    return f
-
-def get_scoring_rule_psr(f, kth, gpu = False):
+    psr = 1 - distance / (a * k_nearest)
+    psr[out_of_knearest] = 0.0
     if not gpu:
-        PSR = np.prod(1.0 - f, axis = 0)
+        psr = np.prod(1.0 - f, axis = 0)
     else:
-        PSR = torch.prod(1.0 - f, dim = 0)
-    return PSR
-
-
-
+        psr = torch.prod(1.0 - f, dim = 0)
+    return psr
 
 def pprecision_precall(real, fake, a = 1.5, kth = 4, gpu = False):
     """
@@ -68,15 +62,11 @@ def pprecision_precall(real, fake, a = 1.5, kth = 4, gpu = False):
     k_nearest_x = get_average_of_knn_distance(pairwise_distance_real, kth, gpu = gpu)
     k_nearest_y = get_average_of_knn_distance(pairwise_distance_fake, kth, gpu = gpu)
     
-    # Derive hypersphere f
-    f_x = get_hypersphere_f(distance, k_nearest_x, a)
-    f_y = get_hypersphere_f(distance_t, k_nearest_y, a)
+    # Derive PSR scoring rule
+    PSR_X = get_scoring_rule_psr(distance, k_nearest_x, a, gpu)
+    PSR_Y = get_scoring_rule_psr(distance_t, k_nearest_y, a, gpu)
     
-    # Estimate mass function of distribution
-    PSR_X = get_scoring_rule_psr(f_x, kth, gpu = gpu)
-    PSR_Y = get_scoring_rule_psr(f_y, kth, gpu = gpu)
-    
-    # Calculate the expectation of mass
+    # Calculate P-precision and P-recall
     if gpu:
         p_precision = torch.mean(1.0 - PSR_X).cpu()
         p_recall = torch.mean(1.0 - PSR_Y).cpu()
