@@ -6,3 +6,7 @@ The official implementation of **Probabilistic Precision and Recall Towards Reli
 
 ### 1. Outlier Test
 Test 10K real and generated samples from standard normal distribution N(0, I)
+
+### 2. Reflecting fidelity and diversity
+
+### 3. Generative Model Benchmarks
