@@ -4,5 +4,5 @@ The official implementation of **Probabilistic Precision and Recall Towards Reli
 
 ## Toy Experiments
 
-# Outlier Test
+### 1. Outlier Test
 Test 10K real and generated samples from standard normal distribution N(0, I)
