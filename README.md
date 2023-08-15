@@ -1,7 +1,7 @@
 # Probabilistic Precision and Recall Towards Reliable Evaluation of Generative Models (ICCV 2023)
 The official implementation of **Probabilistic Precision and Recall Towards Reliable Evaluation of Generative Models** (P-precision & P-recall), accepted at ICCV-2023.
 P-precision and P-recall aims to provide reliable estimates for evaluating fidelity and diversity of generative models even with the presence of out-of-distribution samples, based on our novel probabilistic approach.
-
+The paper will be cited shortly.
 
 ![figure/image2.png](figure/image2.png)
 
