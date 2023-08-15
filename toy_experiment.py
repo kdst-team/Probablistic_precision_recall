@@ -25,13 +25,12 @@ def get_toydataset(dim = 64, datanum = 20000, u = 0, v = 1):
 
 def main(args):
     """
-    Toy-experiment (Gaussian Distribution) for testing accuracy and precision of measurement of evaluation metric
+    Toy-experiment (Gaussian Distribution) for testing evaluation metric
     args:
         setting:
             outlier_f : Investigate the behavior of metric when there exist outlier in real distribution
             outlier_d : Investigate the behavior of metric when there exist outlier in fake distribution
             trade_off : Investigate the behavior of metric when fidelity and diversity trade-off
-            datanum : Investigate the behavior of metric for varying number of dataset
             hyperparameter : Investigate the behavior of metric for varying hyperparameters
         enable_gpu: Enable GPU calculation of PP&PR (default : False). Use for fast calculation with
                      small dataset size, e.g., 10k, due to memory of GPU.
@@ -42,8 +41,10 @@ def main(args):
     random_seed(args.seed)
     
     if args.gpu_enable:
-        os.environ['CUDA_VISIBLE_DEVICES'] = args.ngpu
-        #device = 'cuda'
+        if torch.cuda_is_available:
+            os.environ['CUDA_VISIBLE_DEVICES'] = args.ngpu
+        else:
+            raise ValueError('GPU calculation is not valid')
     
     if args.setting == 'outlier_f':
         outlier = -2 + np.random.randn(1, args.dim)
@@ -79,20 +80,6 @@ def main(args):
         for v in np.arange(0.2, 1.6, 0.1):
             print('Variance : ', v)
             real, fake = get_toydataset(args.dim, args.datanum, v = v)
-
-            # PP&PR
-            p_precision, p_recall = pprecision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
-            print('p_precision : {:.5f}, \t p_recall : {:.5f}'.format(p_precision, p_recall))
-
-            #IP&IR / D&C
-            score = compute_prdc(real, fake, args.kth)
-            print(score)
-
-    elif args.setting == 'datanum':
-        num_list = [100, 500, 750, 1000, 2500, 5000, 7500, 10000, 15000, 20000, 30000, 40000, 50000]
-        for num in num_list:
-            print('Number of dataset : ', num)
-            real, fake = get_toydataset(args.dim, num)
 
             # PP&PR
             p_precision, p_recall = pprecision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
