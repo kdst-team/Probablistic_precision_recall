@@ -41,7 +41,7 @@ def get_scoring_rule_psr(distance, k_nearest, a, gpu = False):
         psr = torch.prod(1.0 - f, dim = 0)
     return psr
 
-def pprecision_precall(real, fake, a = 1.5, kth = 4, gpu = False):
+def pprecision_precall(real, fake, a = 1.2, kth = 4, gpu = False):
     """
     Main Calculation of P-precision and P-recall.
     Args:
