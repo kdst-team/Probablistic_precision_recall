@@ -21,4 +21,3 @@ To be updated soon.
 ### 2. Precomputing the feature embeddings of real and generated samples.
 
 ### 3. Evaluation
-
