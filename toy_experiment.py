@@ -53,7 +53,7 @@ def main(args):
             real[0] = outlier
 
             # PP&PR
-            p_precision, p_recall = pprecision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
+            p_precision, p_recall = compute_precision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
             print('p_precision : {:.5f}, \t p_recall : {:.5f}'.format(p_precision, p_recall))
 
             #IP&IR / D&C
@@ -68,7 +68,7 @@ def main(args):
             fake[0] = outlier
 
             # PP&PR
-            p_precision, p_recall = pprecision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
+            p_precision, p_recall = compute_pprecision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
             print('p_precision : {:.5f}, \t p_recall : {:.5f}'.format(p_precision, p_recall))
 
             #IP&IR / D&C
@@ -81,7 +81,7 @@ def main(args):
             real, fake = get_toydataset(args.dim, args.datanum, v = v)
 
             # PP&PR
-            p_precision, p_recall = pprecision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
+            p_precision, p_recall = compute_pprecision_precall(real, fake, a = args.scale, kth = args.kth, gpu = args.gpu_enable)
             print('p_precision : {:.5f}, \t p_recall : {:.5f}'.format(p_precision, p_recall))
 
             #IP&IR / D&C
@@ -96,7 +96,7 @@ def main(args):
             for k in k_list:
                 print('k : ', k)
                 real, fake = get_toydataset(args.dim, args.datanum)
-                p_precision, p_recall = pprecision_precall(real, fake, a = a, kth = k, gpu = args.gpu_enable)
+                p_precision, p_recall = compute_pprecision_precall(real, fake, a = a, kth = k, gpu = args.gpu_enable)
                 print('p_precision : {:.5f}, \t p_recall : {:.5f}'.format(p_precision,p_recall))
 
 
