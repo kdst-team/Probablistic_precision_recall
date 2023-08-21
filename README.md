@@ -13,15 +13,32 @@ pip install -r requirements.txt
 ## Usage for toy experiments
 
 ### 0. Example
-Below is the script for measuring fidelity and diversity between two Gaussian distributions.
+Below is the script for measuring p-precision (fidelity) and p-recall (diversity) between two Gaussian distributions.
 ```python
 import numpy as np
-import 
+from metric.pp_pr import compute_pprecision_precall
+
+num_real = 5000
+num_fake = 5000
+dims = 64
+
+real_sample = np.random.randn(num_real, dims)
+fake_sample = np.random.randn(num_fake, dims)
+
+p_precision, p_recall = compute_pprecision_precall(real_sample, fake_sample)
 ```
 
 ### 1. Outlier Test
+The following command will reproduce the results of Figure 2a and 2b in our paper.  
+```
+python toy_experiment.py --dim 64 --datanum 10000 --setting outlier_f
+```
 
 ### 2. Reflecting fidelity and diversity
+The following command will reproduce the results of Figure 5 in our paper.
+```
+python toy_experiment.py --dim 64 --datanum 10000 --setting trade_off
+```
 
 ## Usage for evaluating generative model
 To be updated soon.
