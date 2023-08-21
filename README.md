@@ -5,6 +5,10 @@ The paper will be cited shortly.
 
 ![figure/image2.png](figure/image2.png)
 
+## Requirements
+```
+pip install -r requirements.txt
+```
 
 ## Usage for toy experiments
 To be updated soon.
