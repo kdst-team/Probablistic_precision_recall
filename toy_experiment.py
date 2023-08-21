@@ -89,7 +89,7 @@ def main(args):
             print(score)
             
     elif args.setting == 'hyperparameter':
-        a_list = [1.2, 1.5, 1.7, 2.0]
+        a_list = [1.0, 1.1, 1.2, 1.3, 1.4]
         k_list = [2, 3, 4, 5, 6]
         for a in a_list:
             print('a : ', a)
