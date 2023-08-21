@@ -4,6 +4,7 @@ P-precision and P-recall aims to provide reliable estimates for evaluating fidel
 The paper will be cited shortly.
 
 ![figure/image2.png](figure/image2.png)
+Our motivation arises from the recognition that accurately estimating the ground truth support is infeasible with empirical observations alone. As a result, it becomes difficult to determine whether a sample belongs to the ground truth support with certainty (0 or 1) like IP&IR and D&C. Therefore, we adopt a probabilistic perspective and define the probability of a sample belonging to the support, taking into account the uncertainty surrounding the ground truth support. Then, our metric is capable of assigning different scores to different samples based on the likelihood of belonging to the support, effectively addressing outlier concerns.
 
 ## Requirements
 ```
