@@ -11,7 +11,13 @@ pip install -r requirements.txt
 ```
 
 ## Usage for toy experiments
-To be updated soon.
+
+### 0. Example
+Below is the script for measuring fidelity and diversity between two Gaussian distributions.
+```python
+import numpy as np
+import 
+```
 
 ### 1. Outlier Test
 
