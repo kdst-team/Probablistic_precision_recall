@@ -3,8 +3,7 @@ import torch
 import random
 import argparse
 import numpy as np
-from compute_pp_pr import pprecision_precall
-from prdc import compute_prdc
+from metric import compute_pprecision_precall, compute_prdc
 
 def random_seed(seed):
     torch.manual_seed(seed)
