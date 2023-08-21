@@ -17,7 +17,7 @@ pip install -r requirements.txt
 Below is the script for measuring p-precision (fidelity) and p-recall (diversity) between two Gaussian distributions.
 ```python
 import numpy as np
-from metric.pp_pr import compute_pprecision_precall
+from metric import compute_pprecision_precall
 
 num_real = 5000
 num_fake = 5000
