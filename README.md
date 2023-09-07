@@ -49,3 +49,17 @@ To be updated soon.
 ### 2. Precomputing the feature embeddings of real and generated samples.
 
 ### 3. Evaluation
+
+# Citation
+If you find our work useful, please consider citing
+
+```bibtex
+@misc{park2023probabilistic,
+      title={Probabilistic Precision and Recall Towards Reliable Evaluation of Generative Models}, 
+      author={Dogyun Park and Suhyun Kim},
+      year={2023},
+      eprint={2309.01590},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
