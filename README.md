@@ -41,15 +41,6 @@ The following command will reproduce the results of Figure 5 in our paper.
 python toy_experiment.py --dim 64 --datanum 10000 --setting trade_off
 ```
 
-## Usage for evaluating generative model
-To be updated soon.
-
-### 1. Preparing real and generated samples.
-
-### 2. Precomputing the feature embeddings of real and generated samples.
-
-### 3. Evaluation
-
 # Citation
 If you find our work useful, please consider citing
 
