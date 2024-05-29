@@ -33,8 +33,8 @@ def get_average_of_knn_distance(x, kth, gpu = False):
 
 def get_scoring_rule_psr(distance, k_nearest, a, gpu = False):
     out_of_knearest = distance >= a * k_nearest
-    psr = 1 - distance / (a * k_nearest)
-    psr[out_of_knearest] = 0.0
+    f = 1 - distance / (a * k_nearest)
+    f[out_of_knearest] = 0.0
     if not gpu:
         psr = np.prod(1.0 - f, axis = 0)
     else:
